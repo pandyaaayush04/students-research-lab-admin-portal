@@ -160,7 +160,7 @@ export default function Attendance() {
             </table>
           </div>
           {addError && <div className="text-red-500 text-sm mt-2">{addError}</div>}
-          <Button type="submit" disabled={adding} variant="success" className="mt-2">
+          <Button type="submit" disabled={adding} variant="default" className="mt-2">
             {adding ? "Adding..." : "Submit Attendance"}
           </Button>
         </form>
