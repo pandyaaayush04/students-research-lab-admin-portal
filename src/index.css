@@ -221,6 +221,18 @@
     @apply px-2 sm:px-3 py-1.5;
   }
 
+  /* Hide text cursors globally */
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="number"],
+  input[type="password"],
+  textarea,
+  select,
+  [contenteditable] {
+    cursor: none !important;
+  }
+
   /* Responsive input styles */
   input[type="text"],
   input[type="email"],
