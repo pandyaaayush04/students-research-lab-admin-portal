@@ -41,7 +41,13 @@ export default function Activities() {
         .order('date', { ascending: false });
 
       if (error) throw error;
-      setActivities(data || []);
+      
+      // Additional client-side sorting to ensure newest first
+      const sortedData = (data || []).sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+      
+      setActivities(sortedData);
     } catch (error: any) {
       console.error('Supabase error:', error);
       toast({

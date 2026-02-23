@@ -11,7 +11,6 @@ import Students from "@/pages/Students";
 import Research from "@/pages/Research";
 import Attendance from "@/pages/Attendance";
 import Scores from "@/pages/Scores";
-import Leadership from "@/pages/Leadership";
 import Activities from "@/pages/Activities";
 import NotFound from "./pages/NotFound";
 
@@ -33,7 +32,6 @@ const App = () => (
               <Route path="/research" element={<Research />} />
               <Route path="/attendance" element={<Attendance />} />
               <Route path="/scores" element={<Scores />} />
-              <Route path="/leadership" element={<Leadership />} />
               <Route path="/activities" element={<Activities />} />
             </Route>
           {/* </Route> */}

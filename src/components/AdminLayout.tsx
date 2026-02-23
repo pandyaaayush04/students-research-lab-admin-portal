@@ -27,7 +27,6 @@ const navItems = [
   { title: "Research", path: "/research", icon: BookOpen },
   { title: "Attendance", path: "/attendance", icon: CalendarCheck },
   { title: "Scores", path: "/scores", icon: Trophy },
-  { title: "Leadership", path: "/leadership", icon: UserCog },
   { title: "Activities", path: "/activities", icon: Calendar },
 ];
 
@@ -37,7 +36,6 @@ const pageNames: Record<string, string> = {
   "/research": "Research Work",
   "/attendance": "Attendance",
   "/scores": "Live Scores",
-  "/leadership": "Research Leadership",
   "/activities": "Activities & Events",
 };
 
