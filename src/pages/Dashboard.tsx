@@ -115,16 +115,16 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl">
+    <div className="space-y-4 sm:space-y-6 max-w-7xl">
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         <StatCard icon={Users} title="Total Students" value={48} subtitle="+3 this month" delay={0} />
         <StatCard icon={CalendarCheck} title="Today's Attendance" value="92%" subtitle="44 of 48 present" delay={0.05} />
         <StatCard icon={BookOpen} title="Research Papers" value={24} subtitle="6 pending review" delay={0.1} />
       </div>
 
       {/* Two column layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 sm:gap-4">
         {/* Leaderboard */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}

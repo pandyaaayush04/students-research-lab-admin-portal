@@ -171,12 +171,12 @@
   }
 
   .page-title {
-    @apply text-2xl font-semibold tracking-tight text-foreground;
+    @apply text-lg sm:text-2xl font-semibold tracking-tight text-foreground;
     user-select: none;
   }
 
   .section-title {
-    @apply text-lg font-semibold tracking-tight text-foreground;
+    @apply text-base sm:text-lg font-semibold tracking-tight text-foreground;
     user-select: none;
   }
 
@@ -207,4 +207,39 @@
     -moz-user-select: text;
     -ms-user-select: text;
   }
+
+  /* Responsive table styles */
+  table {
+    @apply w-full text-sm;
+  }
+
+  th {
+    @apply px-2 sm:px-3 py-1.5 text-left font-medium;
+  }
+
+  td {
+    @apply px-2 sm:px-3 py-1.5;
+  }
+
+  /* Responsive input styles */
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  select {
+    @apply w-full text-sm px-2 sm:px-3 py-1.5 sm:py-2;
+  }
+
+  /* Mobile responsive dialog */
+  @media (max-width: 640px) {
+    .dialog-content {
+      @apply w-full max-w-[90vw];
+    }
+
+    .glass-card {
+      @apply rounded-lg sm:rounded-2xl;
+    }
+  }
 }
+

@@ -51,11 +51,11 @@ export default function Research() {
   );
 
   return (
-    <div className="space-y-5 max-w-7xl">
-      <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+    <div className="space-y-4 sm:space-y-5 max-w-7xl">
+      <div className="flex flex-col gap-3 items-start sm:flex-row sm:items-center sm:justify-between">
         <div className="relative w-full sm:w-80">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input placeholder="Search papers..." className="pl-9 rounded-xl border-border bg-card" value={search} onChange={(e) => setSearch(e.target.value)} />
+          <Input placeholder="Search papers..." className="pl-9 rounded-xl border-border bg-card text-sm" value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
@@ -129,7 +129,7 @@ export default function Research() {
           </DialogContent>
         )}
       </Dialog>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-max">
         {loading ? (
           <div className="text-center py-10 text-muted-foreground col-span-full">Loading research projects...</div>
         ) : filtered.length === 0 ? (
@@ -142,7 +142,7 @@ export default function Research() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06, duration: 0.4 }}
               whileHover={{ y: -2, scale: 1.02 }}
-              className="bg-white dark:bg-card shadow-xl rounded-2xl overflow-hidden flex flex-col border border-border hover:shadow-2xl transition-all duration-300"
+              className="bg-white dark:bg-card shadow-xl rounded-2xl overflow-hidden flex flex-col border border-border hover:shadow-2xl transition-all duration-300 h-full"
             >
               <div className="w-full h-48 bg-muted flex items-center justify-center overflow-hidden">
                 {project.team_image_url ? (

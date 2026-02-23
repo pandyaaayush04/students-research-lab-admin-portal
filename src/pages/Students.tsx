@@ -133,19 +133,19 @@ export default function Students() {
   );
 
   return (
-    <div className="space-y-5 max-w-7xl">
+    <div className="space-y-4 sm:space-y-5 max-w-7xl">
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+      <div className="flex flex-col gap-3 items-start sm:flex-row sm:items-center sm:justify-between">
         <div className="relative w-full sm:w-80">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Search students, enrollment, batch..."
-            className="pl-9 rounded-xl border-border bg-card"
+            placeholder="Search students..."
+            className="pl-9 rounded-xl border-border bg-card text-sm"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full sm:w-auto">
           <Button variant="outline" size="sm" className="rounded-xl gap-1.5">
             <Filter className="w-3.5 h-3.5" />
             Filters

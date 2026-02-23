@@ -113,19 +113,19 @@ export default function Scores() {
         </Button>
       </div>
       {showAddForm && (
-        <form onSubmit={handleAddScores} className="mb-4 p-4 border rounded bg-card flex flex-col gap-2 max-w-2xl">
-          <div className="flex gap-2 items-center mb-2">
-            <label className="font-medium">Date:</label>
+        <form onSubmit={handleAddScores} className="mb-4 p-3 sm:p-4 border rounded bg-card flex flex-col gap-3 max-w-2xl">
+          <div className="flex flex-col sm:flex-row gap-2 sm:items-center mb-2">
+            <label className="font-medium text-sm shrink-0">Date:</label>
             <input
               type="date"
               value={addDate}
               onChange={e => setAddDate(e.target.value)}
-              className="border px-2 py-1 rounded"
+              className="border px-2 py-1.5 sm:py-1 rounded text-sm flex-1"
               required
             />
           </div>
-          <div className="overflow-x-auto max-h-96">
-            <table className="w-full">
+          <div className="overflow-x-auto max-h-96 -mx-3 sm:-mx-4 px-3 sm:px-4">
+            <table className="w-full text-sm">
               <thead>
                 <tr>
                   <th className="text-left px-2 py-1">Student</th>

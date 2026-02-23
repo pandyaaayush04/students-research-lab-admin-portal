@@ -111,26 +111,26 @@ export default function Attendance() {
   };
 
   return (
-    <div className="space-y-5 max-w-7xl">
-      <div className="flex justify-end">
-        <Button onClick={() => setShowAddForm((v) => !v)} variant="default">
+    <div className="space-y-4 sm:space-y-5 max-w-7xl">
+      <div className="flex justify-start sm:justify-end">
+        <Button onClick={() => setShowAddForm((v) => !v)} variant="default" className="text-sm sm:text-base">
           {showAddForm ? "Cancel" : "Add Attendance"}
         </Button>
       </div>
       {showAddForm && (
-        <form onSubmit={handleAddAttendance} className="mb-4 p-4 border rounded bg-card flex flex-col gap-2 max-w-2xl">
-          <div className="flex gap-2 items-center mb-2">
-            <label className="font-medium">Date:</label>
+        <form onSubmit={handleAddAttendance} className="mb-4 p-3 sm:p-4 border rounded bg-card flex flex-col gap-3 max-w-2xl">
+          <div className="flex flex-col sm:flex-row gap-2 sm:items-center mb-2">
+            <label className="font-medium text-sm shrink-0">Date:</label>
             <input
               type="date"
               value={addDate}
               onChange={e => setAddDate(e.target.value)}
-              className="border px-2 py-1 rounded"
+              className="border px-2 py-1.5 sm:py-1 rounded text-sm flex-1"
               required
             />
           </div>
-          <div className="overflow-x-auto max-h-96">
-            <table className="w-full">
+          <div className="overflow-x-auto max-h-96 -mx-3 sm:-mx-4 px-3 sm:px-4">
+            <table className="w-full text-sm">
               <thead>
                 <tr>
                   <th className="text-left px-2 py-1">Student</th>
@@ -165,19 +165,20 @@ export default function Attendance() {
           </Button>
         </form>
       )}
-      <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4">
-        <h2 className="text-lg font-semibold text-foreground min-w-[160px] text-center">
+      <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        <h2 className="text-base sm:text-lg font-semibold text-foreground shrink-0">
           Attendance for
-          <select
-            value={attendanceDate || ''}
-            onChange={e => setAttendanceDate(e.target.value)}
-            className="ml-2 px-2 py-1 rounded border"
-            style={{ color: 'black' }}
-          >
-            {allDates.map(date => (
-              <option key={date} value={date}>{date}</option>
-            ))}
-          </select>
+        </h2>
+        <select
+          value={attendanceDate || ''}
+          onChange={e => setAttendanceDate(e.target.value)}
+          className="px-2 py-1.5 sm:py-1 rounded border text-sm flex-1 sm:flex-none"
+          style={{ color: 'black' }}
+        >
+          {allDates.map(date => (
+            <option key={date} value={date}>{date}</option>
+          ))}
+        </select>
         </h2>
       </motion.div>
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-card rounded-2xl overflow-hidden">

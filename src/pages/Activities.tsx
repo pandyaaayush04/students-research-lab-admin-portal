@@ -137,12 +137,12 @@ export default function Activities() {
   }
 
   return (
-    <div className="space-y-5 max-w-4xl">
-      <div className="flex justify-end">
+    <div className="space-y-4 sm:space-y-5 max-w-4xl">
+      <div className="flex justify-start sm:justify-end">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm" className="rounded-xl gap-1.5">
-              <Plus className="w-3.5 h-3.5" /> Add Activity
+            <Button size="sm" className="rounded-xl gap-1.5 text-sm sm:text-base">
+              <Plus className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Add Activity</span><span className="sm:hidden">Add</span>
             </Button>
           </DialogTrigger>
           <DialogContent className="rounded-2xl sm:max-w-md">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -40,11 +40,18 @@ const pageNames: Record<string, string> = {
 };
 
 export default function AdminLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
   const currentPage = pageNames[location.pathname] || "Dashboard";
+
+  // Close sidebar on mobile when route changes
+  useEffect(() => {
+    if (window.innerWidth < 1024) {
+      setSidebarOpen(false);
+    }
+  }, [location.pathname]);
 
   const handleLogout = async () => {
     try {
@@ -68,22 +75,29 @@ export default function AdminLayout() {
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background">
-      {/* Sidebar */}
+      {/* Mobile overlay when sidebar is open */}
+      <AnimatePresence>
+        {sidebarOpen && window.innerWidth < 1024 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSidebarOpen(false)}
+            className="fixed inset-0 bg-black/50 z-20 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Sidebar - Hidden on mobile unless opened */}
       <motion.aside
         initial={false}
-        animate={{ width: sidebarOpen ? 260 : 72 }}
+        animate={{ width: window.innerWidth >= 1024 ? (sidebarOpen ? 260 : 72) : sidebarOpen ? 260 : 0 }}
         transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-        className="relative flex flex-col border-r border-border bg-sidebar h-full shrink-0 z-20"
+        className="flex flex-col border-r border-border bg-sidebar h-full shrink-0 z-30 fixed top-0 left-0 lg:static"
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-4 h-16 border-b border-border shrink-0">
-          <div className="flex items-center justify-center w-9 h-9 rounded-xl overflow-hidden bg-primary/10">
-            <img 
-              src="/srl-logo.png" 
-              alt="SRL Logo" 
-              className="w-full h-full object-contain"
-            />
-          </div>
+          <img src="/SRL Logo.svg" alt="SRL Logo" className="w-10 h-10 rounded-xl flex-shrink-0" />
           <AnimatePresence>
             {sidebarOpen && (
               <motion.div
@@ -143,26 +157,26 @@ export default function AdminLayout() {
       {/* Main content area */}
       <div className="flex flex-col flex-1 min-w-0">
         {/* Header */}
-        <header className="flex items-center justify-between h-16 px-6 border-b border-border bg-card/50 backdrop-blur-sm shrink-0">
-          <div className="flex items-center gap-3">
+        <header className="flex items-center justify-between h-14 sm:h-16 px-3 sm:px-6 border-b border-border bg-card/50 backdrop-blur-sm shrink-0 gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="lg:hidden shrink-0 h-9 w-9 sm:h-10 sm:w-10"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {sidebarOpen ? <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Menu className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
             </Button>
-            <h1 className="page-title">{currentPage}</h1>
+            <h1 className="page-title text-base sm:text-lg truncate">{currentPage}</h1>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="relative rounded-xl text-muted-foreground hover:text-foreground">
-              <Bell className="w-[18px] h-[18px]" />
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            <Button variant="ghost" size="icon" className="relative rounded-xl text-muted-foreground hover:text-foreground h-9 w-9 sm:h-10 sm:w-10">
+              <Bell className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
               <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full" />
             </Button>
-            <div className="w-px h-6 bg-border" />
-            <div className="flex items-center gap-2.5">
+            <div className="w-px h-5 bg-border hidden sm:block" />
+            <div className="hidden sm:flex items-center gap-2.5">
               <Avatar className="w-8 h-8">
                 <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
                   AD
@@ -179,16 +193,16 @@ export default function AdminLayout() {
               variant="ghost"
               size="icon"
               onClick={handleLogout}
-              className="rounded-xl text-muted-foreground hover:text-destructive"
+              className="rounded-xl text-muted-foreground hover:text-destructive h-9 w-9 sm:h-10 sm:w-10"
               title="Logout"
             >
-              <LogOut className="w-[18px] h-[18px]" />
+              <LogOut className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
             </Button>
           </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
           <motion.div
             key={location.pathname}
             initial={{ opacity: 0, y: 8 }}
